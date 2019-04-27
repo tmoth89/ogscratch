@@ -9,10 +9,11 @@ const cookieController = require('./controllers/cookieController.js');
 const app = express();
 const PORT = 3000;
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'))
 });
 

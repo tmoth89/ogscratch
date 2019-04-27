@@ -13,7 +13,8 @@ module.exports = {
     compress: true,
     proxy: {
       '/': 'http://localhost:3000/'
-    }
+    },
+    historyApiFallback: true
   },
 
   module: {
