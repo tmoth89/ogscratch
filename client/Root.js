@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Link, BrowserRouter  as Router } from 'react-router-dom'; // removed Switch, Redirect
 import { Provider } from 'react-redux';
 import App from './components/App';
 import test1 from './components/Test1';
