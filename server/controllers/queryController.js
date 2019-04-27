@@ -10,11 +10,12 @@ module.exports = {
   },
 
   testSignIn: (req, res, next) => {
-    db.query(`SELECT * FROM testauth WHERE (user='${req.body.user}') AND (password='${req.body.password}')`, (err, result) => {
-      if (err) res.locals.error = err;
+    // console.log('password in test signIn++++++', req.body.password);
+    db.query(`SELECT * FROM testauth WHERE ("user"='${req.body.user}')`, (err, result) => {
+      if (err) res.locals.error = err; // invalid username
       else {
-        console.log('Test sign in success');
-        res.locals.result = result;
+        res.locals.result = result.rows[0]; // we have access to the hash
+        console.log('result in queryController+++++', res.locals.result);
       }
       return next();
     })
@@ -35,6 +36,4 @@ module.exports = {
       return next();
     })
   },
-
-  hello: () => console.log('hello from db to client')
 }

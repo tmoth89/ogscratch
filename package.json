@@ -20,6 +20,7 @@
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "js-cookie": "^2.2.0",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^1.18.11",
     "react": "^16.8.6",
     "react-cookie": "^3.1.2",
