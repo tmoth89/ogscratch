@@ -31,7 +31,7 @@ module.exports = {
     db.query(insertQuery, queryValues, (err, result) => {
       if (err) res.locals.error = err;
       else {
-        console.log('+++++Item added to db', result);
+        // console.log('+++++Item added to db', result);
         res.locals.result = result;
       }
       return next();
