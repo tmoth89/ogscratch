@@ -26,6 +26,7 @@ module.exports = {
         
         // IF LOOKUP RETURNS EXISTING SESSION, STASH RESULT
       } else {
+        console.log('+++++Session found');
         res.locals.result = result.rows[0];
         return next();
       }
@@ -34,10 +35,7 @@ module.exports = {
   
   lookupSession: (req, res, next) => {
     db.query(`SELECT t.user FROM testauth t INNER JOIN sessions s ON t.id = s.accountid WHERE s.sessionid='${res.locals.token}'`, (err,result) => {
-      if (err) {
-        res.locals.error = err;
-        console.log('=====query error in lookup session', err);
-      }
+      if (err) res.locals.error = err;
       else res.locals.result = result.rows[0];
       return next();
     })
