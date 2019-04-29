@@ -4,6 +4,7 @@ const db = require('../db.js');
 module.exports = {
 
   verifySession: (req, res, next) => {
+    if (res.locals.error) return next();
     db.query(`SELECT * FROM sessions WHERE sessionid='${res.locals.token}'`, (err,result) => {
       if (err) {
         res.locals.err = err;
@@ -34,6 +35,7 @@ module.exports = {
   },
   
   lookupSession: (req, res, next) => {
+    if (res.locals.error) return next();
     db.query(`SELECT t.user FROM testauth t INNER JOIN sessions s ON t.id = s.accountid WHERE s.sessionid='${res.locals.token}'`, (err,result) => {
       if (err) res.locals.error = err;
       else res.locals.result = result.rows[0];

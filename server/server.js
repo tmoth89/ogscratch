@@ -44,8 +44,8 @@ app.post('/api/testsignin',
   testSessionController.lookupSession, 
   (req, res) => {
     if (res.locals.error) {
-      res.status(501);
       res.send(res.locals.error);
+      res.status(501);
     }
     else res.send(res.locals.result);
   });
