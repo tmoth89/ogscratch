@@ -16,9 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'))
-});
+
 
 app.get('/api/getallart/', queryController.getAllArt, (req, res) => {
   if (res.locals.error) res.send(res.locals.error);
@@ -49,9 +47,13 @@ sessionController.lookupSession,
   if (res.locals.error) {
     res.status(501);
     res.send(res.locals.error);
-    console.log('~~~~~~Error at end of signIn route:', res.locals.error);
+    // console.log('~~~~~~Error at end of signIn route:', res.locals.error);
   }
   else res.send(res.locals.result);
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'))
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
