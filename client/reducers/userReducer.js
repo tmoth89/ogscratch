@@ -4,7 +4,8 @@ const initialState = {
   username: null,
   password: null,
   verified: null,
-  error: null
+  error: null,
+  needsToSignup: false,
   
 };
 
@@ -13,6 +14,7 @@ const userReducer = (state = initialState, action) => {
   let newError;
   let newUsername;
   let newPassword;
+  let newNeedsToSignup;
 
   switch(action.type) {
     case types.LOGIN_USERNAME:
@@ -48,6 +50,14 @@ const userReducer = (state = initialState, action) => {
         verified: newVerified,
         error: newError,
       };
+    case types.SIGNUP:
+      console.log('in reducer')
+      console.log('action.payload in reducer', action.payload)
+      newNeedsToSignup = action.payload;
+      return {
+        ...state,
+        needsToSignup: newNeedsToSignup,
+      }
 
       default:
         return state;

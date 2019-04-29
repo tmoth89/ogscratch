@@ -4,12 +4,14 @@ import * as actions from '../actions/actions';
 import { Redirect } from 'react-router-dom';
 
 let homeloaded = false;
+let signuploaded = false;
 
 const mapStateToProps = store => ({
   username: store.userTraffic.username,
   password: store.userTraffic.password,
   verified: store.userTraffic.verified,
-  error: store.userTraffic.error
+  error: store.userTraffic.error,
+  needsToSignup: store.userTraffic.needsToSignup,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,8 +24,11 @@ const mapDispatchToProps = dispatch => ({
   verifyLogin: (username, password) => {
     dispatch(actions.verifyLogin(username, password))
   },
+  signup: () => {
+    dispatch(actions.signup())
+  },
 })
-class App extends Component {
+class Signin extends Component {
   constructor(props) {
     super(props);
   }
@@ -31,7 +36,11 @@ class App extends Component {
   render() {
     if (this.props.verified === true && homeloaded === false) {
       homeloaded = true;
-      return <Redirect to="/test2"></Redirect>
+      return <Redirect to="/Home"></Redirect>
+    }
+    if (this.props.needsToSignup === true && signuploaded === false) {
+      signuploaded = true;
+      return <Redirect to="/signup"></Redirect>
     }
 
     return (
@@ -42,10 +51,13 @@ class App extends Component {
         <label for="loginPassword">Password</label>
         <input type="text" onChange={(e) => this.props.loginPassword(e)} id="password" placeholder="password"></input>
         <button onClick={(e) => { e.preventDefault(); this.props.verifyLogin(this.props.username, this.props.password)}}>Login</button>
+        <br></br>
+        <br></br>
+        <button onClick={(e) => { e.preventDefault(); this.props.signup()}}>Signup</button>
       </div>
     )
     
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

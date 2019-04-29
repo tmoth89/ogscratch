@@ -63,3 +63,37 @@ export const postUsernameAndPasswordFailure = (err) => ({
     type: types.POST_USERNAME_AND_PASSWORD_FAILURE,
     payload: err
 });
+
+export const signup = () => ({
+    type: types.SIGNUP,
+    payload: true
+});
+
+export const createuser = (username, password) => (dispatch) => {
+    axios({
+        method: 'post',
+        url: '/api/testauth',
+        data: { 'username': username, 'password': password },
+    })
+    .then(response => {
+        console.log('this is res', response.data)
+        // return res.json()
+        return dispatch(
+            postUsernameAndPasswordSuccess({
+                type: types.POST_USERNAME_AND_PASSWORD_SUCCESS,
+                payload: response.data
+            })
+        )
+    })
+    // .then(response => {
+    //     console.log('this is .then res', response);
+    // })
+    .catch(
+        error => dispatch(
+            postUsernameAndPasswordFailure({
+                type: types.POST_USERNAME_AND_PASSWORD_FAILURE,
+                payload: error
+        })
+      )
+    )
+}
