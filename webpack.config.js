@@ -11,13 +11,12 @@ module.exports = {
   devServer : {
     publicPath: 'http://localhost:8080/build/',
     compress: true,
+    historyApiFallback: true,
     proxy: {
       '/': 'http://localhost:3000/',
-      '/api': 'http://localhost:3000'
-    },
-    historyApiFallback: true
+      '/api': 'http://localhost:3000',
+    }
   },
-
   module: {
     rules: [
       {
@@ -25,7 +24,9 @@ module.exports = {
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
-          options: {presets: ['@babel/preset-env', '@babel/preset-react']}
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
         }
       },
 
@@ -33,7 +34,7 @@ module.exports = {
         test: /\.css$/,
         exclude: /(node_modules)/,
         use: ['style-loader', 'css-loader']
-      },
+      }, 
     ]
   }
 }

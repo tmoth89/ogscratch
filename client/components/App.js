@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
-// import Users from './components/Test1';
-// import MainContainer from './containers/MainContainer.jsx';
+import { Redirect } from 'react-router-dom';
 
-
+let homeloaded = false;
 
 const mapStateToProps = store => ({
   username: store.userTraffic.username,
@@ -30,19 +29,22 @@ class App extends Component {
   }
 
   render() {
-    return(
+    if (this.props.verified === true && homeloaded === false) {
+      homeloaded = true;
+      return <Redirect to="/test2"></Redirect>
+    }
+
+    return (
       <div>
         <h3>Please Login</h3>
         <label for="loginUsername">Username</label>
         <input type="text" onChange={(e) => this.props.loginUsername(e)} id="username" placeholder="username"></input>
         <label for="loginPassword">Password</label>
         <input type="text" onChange={(e) => this.props.loginPassword(e)} id="password" placeholder="password"></input>
-       <button onClick={() => {this.props.verifyLogin(this.props.username, this.props.password)}}>Login</button>
-        <br></br>
-        <br></br>
-        {/* <a href="/test1">Signup</a> */}
+        <button onClick={(e) => { e.preventDefault(); this.props.verifyLogin(this.props.username, this.props.password)}}>Login</button>
       </div>
     )
+    
   }
 }
 

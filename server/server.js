@@ -16,9 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'))
-});
+
 
 app.get('/api/getallart/', testQueryController.getAllArt, (req, res) => {
   if (res.locals.error) res.send(res.locals.error);
@@ -51,5 +49,9 @@ app.post('/api/testsignin',
     }
     else res.send(res.locals.result);
   });
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'))
+});
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
