@@ -12,7 +12,7 @@ module.exports = {
   testSignIn: (req, res, next) => {
     console.log('+++++req.BODY in testSignIn', req.body);
     db.query(`SELECT * FROM testauth WHERE ("user"='${req.body.username}')`, (err, result) => {
-      if (err) res.locals.error = err; // KEITH: NOT GETTING ERROR WITH INVALID USERNAME
+      if (err) res.locals.error = err; 
       else {
         res.locals.result = result.rows[0]; // we have access to the hash
         if (res.locals.result === undefined) res.locals.error = {error: 'Invalid username'};
