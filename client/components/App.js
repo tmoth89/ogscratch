@@ -30,6 +30,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('TEST', this.props.history)
     return(
       <div>
         <h3>Please Login</h3>

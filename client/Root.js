@@ -12,9 +12,9 @@ require('./styles.css');
 const Root = ({store}) => (
     <Provider store={store}>
         <Router>
-                <Route path='/' component={App} />
-                <Route path='/test1' component={test1} />
-                <Route path='/test2' component={test2} />
+            <Route path='/' component={App} />
+            <Route path='/test1' component={test1} />
+            <Route path='/test2' component={test2} />
         </Router>
     </Provider>
 )

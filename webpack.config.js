@@ -12,6 +12,7 @@ module.exports = {
     publicPath: 'http://localhost:8080/build/',
     compress: true,
     proxy: {
+      '/api': 'http://localhost:3000',
       '/': 'http://localhost:3000/'
     },
     historyApiFallback: true
@@ -32,7 +33,7 @@ module.exports = {
         test: /\.css$/,
         exclude: /(node_modules)/,
         use: ['style-loader', 'css-loader']
-      },
+      }, 
     ]
   }
 }
