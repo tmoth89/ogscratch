@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import Root from './Root';
 import store from './store';
 
-require('./styles.css')
+// require('./styles.css')
 
 render(
     <Root store={store} />

@@ -3,14 +3,14 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   username: null,
   password: null,
-  verified: true,
+  verified: null,
   error: null
   
 };
 
 const userReducer = (state = initialState, action) => {
-  let verified;
-  let error;
+  let newVerified;
+  let newError;
   let newUsername;
   let newPassword;
 
@@ -30,22 +30,23 @@ const userReducer = (state = initialState, action) => {
       };
 
     case types.POST_USERNAME_AND_PASSWORD_SUCCESS:
-      //coordinate with backend re res.locals//
-      verified = action.payload.res
+      newVerified = true;
       return {
         ...state,
-        verified,
+        verified: newVerified,
         // May need to reset certain areas of state (error, etc.)
         // error: null
       };
     case types.POST_USERNAME_AND_PASSWORD_FAILURE:
-      verified = false;
+      // console.log('IN FAILUREREDUC', action.payload)
+      // console.log('IN FAILURE error', action.payload.payload.response.data.error)
+      newVerified = false;
       //coordinate with backend re err sent back from server//
-      error = action.payload.err;
+      newError = action.payload.payload.response.data.error;
       return {
         ...state,
-        verified,
-        error,
+        verified: newVerified,
+        error: newError,
       };
 
       default:
