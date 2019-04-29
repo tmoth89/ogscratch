@@ -10,19 +10,20 @@ module.exports = {
   },
 
   testSignIn: (req, res, next) => {
-    // console.log('password in test signIn++++++', req.body.password);
-    db.query(`SELECT * FROM testauth WHERE ("user"='${req.body.user}')`, (err, result) => {
-      if (err) res.locals.error = err; // invalid username
+    console.log('+++++req.BODY in testSignIn', req.body);
+    db.query(`SELECT * FROM testauth WHERE ("user"='${req.body.username}')`, (err, result) => {
+      if (err) res.locals.error = err; // KEITH: NOT GETTING ERROR WITH INVALID USERNAME
       else {
         res.locals.result = result.rows[0]; // we have access to the hash
-        console.log('result in queryController+++++', res.locals.result);
+        if (res.locals.result === undefined) res.locals.error = {error: 'Invalid username'};
+        console.log('+++++RESULT in testSignIn', res.locals.result);
       }
       return next();
     })
   },
   
   testAuth: (req, res, next) => {
-    const queryValues = [req.body.user, req.body.password];
+    const queryValues = [req.body.username, req.body.password];
     const insertQuery = `INSERT INTO testauth("user","password") VALUES($1, $2) RETURNING *`;
     
     // console.log('** queryValues inside testAuth', queryValues);
@@ -30,7 +31,7 @@ module.exports = {
     db.query(insertQuery, queryValues, (err, result) => {
       if (err) res.locals.error = err;
       else {
-        console.log('Item added to db');
+        console.log('+++++Item added to db', result);
         res.locals.result = result;
       }
       return next();

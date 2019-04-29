@@ -1,4 +1,5 @@
 import * as types from '../constants/actionTypes';
+const axios = require('axios');
 
 export const loginUsername = (username) => ({
 	type: types.LOGIN_USERNAME,
@@ -24,13 +25,14 @@ export const verifyLogin = (username, password) => (dispatch) => {
     console.log('LOGIN SENT TO VERIFYLOGIN')
     console.log('THIS IS USERNAME', username)
     console.log('THIS IS PASSWORD', password)
-    fetch('/api/testsignin', {
+    axios({
         method: 'post',
-        body: JSON.stringify({ un: username, pw: password })
+        url: '/api/testsignin',
+        data: { 'username': username, 'password': password },
     })
         .then(res => {
             console.log('this is res', res)
-            res.json()
+            return res.json()
         })
     .then(
         response => dispatch(

@@ -12,7 +12,8 @@ module.exports = {
     publicPath: 'http://localhost:8080/build/',
     compress: true,
     proxy: {
-      '/': 'http://localhost:3000/'
+      '/': 'http://localhost:3000/',
+      '/api': 'http://localhost:3000'
     },
     historyApiFallback: true
   },
