@@ -70,30 +70,35 @@ export const signup = () => ({
 });
 
 export const createuser = (username, password) => (dispatch) => {
+    console.log('in createuser function about to post request')
     axios({
         method: 'post',
         url: '/api/testauth',
         data: { 'username': username, 'password': password },
     })
     .then(response => {
-        console.log('this is res', response.data)
-        // return res.json()
         return dispatch(
-            postUsernameAndPasswordSuccess({
-                type: types.POST_USERNAME_AND_PASSWORD_SUCCESS,
+            postCreateUserSuccess({
+                type: types.POST_CREATE_USER_SUCCESS,
                 payload: response.data
             })
         )
     })
-    // .then(response => {
-    //     console.log('this is .then res', response);
-    // })
     .catch(
         error => dispatch(
-            postUsernameAndPasswordFailure({
-                type: types.POST_USERNAME_AND_PASSWORD_FAILURE,
+            postCreateUserFailure({
+                type: types.POST_CREATE_USER_FAILURE,
                 payload: error
         })
       )
     )
 }
+export const postCreateUserSuccess = (res) => ({
+    type: types.POST_CREATE_USER_SUCCESS,
+    payload: res
+});
+
+export const postCreateUserFailure = (err) => ({
+    type: types.POST_CREATE_USER_FAILURE,
+    payload: err
+});

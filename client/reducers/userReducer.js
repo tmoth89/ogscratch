@@ -6,7 +6,7 @@ const initialState = {
   verified: null,
   error: null,
   needsToSignup: false,
-  
+  userCreated: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -15,6 +15,7 @@ const userReducer = (state = initialState, action) => {
   let newUsername;
   let newPassword;
   let newNeedsToSignup;
+  let newUserCreated;
 
   switch(action.type) {
     case types.LOGIN_USERNAME:
@@ -51,14 +52,23 @@ const userReducer = (state = initialState, action) => {
         error: newError,
       };
     case types.SIGNUP:
-      console.log('in reducer')
-      console.log('action.payload in reducer', action.payload)
       newNeedsToSignup = action.payload;
       return {
         ...state,
         needsToSignup: newNeedsToSignup,
-      }
-
+      };
+    case types.POST_CREATE_USER_SUCCESS:
+      console.log('in createuser succ reduce')
+      newUserCreated = true;
+      return {
+        ...state,
+        userCreated: newUserCreated,
+      };
+    case types.POST_CREATE_USER_FAILURE:
+      return {
+        ...state,
+      };
+    
       default:
         return state;
   }

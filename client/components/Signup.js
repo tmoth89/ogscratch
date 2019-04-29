@@ -8,8 +8,7 @@ let homeAfterSignupLoaded = false;
 const mapStateToProps = store => ({
   username: store.userTraffic.username,
   password: store.userTraffic.password,
-  verified: store.userTraffic.verified,
-  error: store.userTraffic.error,
+  userCreated: store.userTraffic.userCreated,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,9 +18,9 @@ const mapDispatchToProps = dispatch => ({
   loginPassword: (event) => {
     dispatch(actions.loginPassword(event.target))
   },
-  verifyLogin: (username, password) => {
-    dispatch(actions.verifyLogin(username, password))
-  },
+  createuser: (username, password) => {
+    dispatch(actions.createuser(username, password))
+  }
 })
 
 class Signup extends Component {
@@ -30,21 +29,20 @@ class Signup extends Component {
     }
 
     render() {
-        // if (this.props.verified === true && homeAfterSignupLoaded === false) {
-        //   homeAfterSignupLoaded = true;
-        //   return <Redirect to="/Home"></Redirect>
-    }
+      if (this.props.userCreated === true && homeAfterSignupLoaded === false) {
+        homeAfterSignupLoaded = true;
+        return <Redirect to="/Home"></Redirect>
+      }
       return (
-          <div>
-              <h3>Signup</h3>
-              <label for="loginUsername">Username</label>
-              <input type="text" onChange={(e) => this.props.loginUsername(e)} id="username" placeholder="username"></input>
-              <label for="loginPassword">Password</label>
-          <input type="text" onChange={(e) => this.props.loginPassword(e)} id="password" placeholder="password"></input>
-          {/* <button onClick={(e) => { e.preventDefault(); this.props.verifyLogin(this.props.username, this.props.password)}}>Create Account</button> */}
-      
-          </div>
-      )
+        <div>
+        <h3>Signup</h3>
+        <label for="loginUsername">Username</label>
+        <input type="text" onChange={(e) => this.props.loginUsername(e)} id="username" placeholder="username"></input>
+        <label for="loginPassword">Password</label>
+        <input type="text" onChange={(e) => this.props.loginPassword(e)} id="password" placeholder="password"></input>
+        <button onClick={(e) => { e.preventDefault(); this.props.createuser(this.props.username, this.props.password)}}>Create Account</button>
+        </div>
+    )
   }
 }
 
