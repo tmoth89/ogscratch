@@ -6,7 +6,7 @@ import test1 from './components/Test1';
 import test2 from './components/Test2';
 import store from './store';
 
-require('./styles.css');
+// require('./styles.css');
 
 
 const Root = ({store}) => (
