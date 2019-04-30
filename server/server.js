@@ -3,6 +3,11 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+const queryController = require('./controllers/queryController.js');
+const bcryptController = require('./controllers/bcryptController.js');
+const cookieController = require('./controllers/cookieController.js');
+const sessionController = require('./controllers/sessionController.js');
+
 const testQueryController = require('./controllers/testQueryController.js');
 const testBcryptController = require('./controllers/testBcryptController.js');
 const testCookieController = require('./controllers/testCookieController.js');
@@ -35,6 +40,18 @@ app.post('/api/testauth/',
     else res.send(res.locals.result);
   });
 
+  app.post('/api/signup', 
+  bcryptController.hashPassword,
+  queryController.signUp,
+  cookieController.setSSIDCookie,
+  sessionController.verifySession,
+  sessionController.lookupSession,
+  (req, res) => {
+    if (res.locals.error) res.send(res.locals.error);
+    else res.send(res.locals.result);
+  }
+  )
+
 // testing for login route
 app.post('/api/testsignin', 
   testQueryController.testSignIn, 
@@ -46,9 +63,21 @@ app.post('/api/testsignin',
     if (res.locals.error) {
       res.send(res.locals.error);
       res.status(501);
-    }
+    } 
     else res.send(res.locals.result);
   });
+  
+  app.post('/api/findbydistance',
+  queryController.signIn,
+  cookieController.setSSIDCookie,
+  sessionController.lookupSession,
+  queryController.findByDistance, (req, res) => {
+    if (res.locals.error) {
+      res.send(res.locals.error);
+      res.status(501);
+    }
+    else res.send(res.locals.result);
+  })
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'))
