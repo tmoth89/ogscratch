@@ -102,3 +102,38 @@ export const postCreateUserFailure = (err) => ({
     type: types.POST_CREATE_USER_FAILURE,
     payload: err
 });
+
+///////////////////////////////////////
+export const getArt = () => (dispatch) => {
+    console.log('in getArt function about to get request')
+    axios({
+        method: 'get',
+        url: '/api/getallart'
+    })
+    .then(response => {
+        return dispatch(
+            postGetArtSuccess({
+                type: types.POST_GET_ART_SUCCESS,
+                payload: response.data
+            })
+        )
+    })
+    .catch(
+        error => dispatch(
+            postGetArtFailure({
+                type: types.POST_GET_ART_FAILURE,
+                payload: error
+        })
+      )
+    )
+}
+
+export const postGetArtSuccess = (res) => ({
+    type: types.POST_GET_ART_SUCCESS,
+    payload: res
+});
+
+export const postGetArtFailure = (err) => ({
+    type: types.POST_GET_ART_FAILURE,
+    payload: err
+});

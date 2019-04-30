@@ -38,7 +38,7 @@ class Signin extends Component {
       homeloaded = true;
       return <Redirect to="/Home"></Redirect>
     }
-    if (this.props.needsToSignup === true && signuploaded === false) {
+    else if (this.props.needsToSignup === true && signuploaded === false) {
       signuploaded = true;
       return <Redirect to="/signup"></Redirect>
     }

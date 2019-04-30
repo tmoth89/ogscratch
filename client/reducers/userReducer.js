@@ -7,6 +7,8 @@ const initialState = {
   error: null,
   needsToSignup: false,
   userCreated: false,
+  artRecieved: false,
+  art: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -16,6 +18,8 @@ const userReducer = (state = initialState, action) => {
   let newPassword;
   let newNeedsToSignup;
   let newUserCreated;
+  let newArtRecieved;
+  let newArt;
 
   switch(action.type) {
     case types.LOGIN_USERNAME:
@@ -33,6 +37,7 @@ const userReducer = (state = initialState, action) => {
       };
 
     case types.POST_USERNAME_AND_PASSWORD_SUCCESS:
+      console.log('in post sign in reduce')
       newVerified = true;
       return {
         ...state,
@@ -40,6 +45,7 @@ const userReducer = (state = initialState, action) => {
         // May need to reset certain areas of state (error, etc.)
         // error: null
       };
+      
     case types.POST_USERNAME_AND_PASSWORD_FAILURE:
       // console.log('IN FAILUREREDUC', action.payload)
       // console.log('IN FAILURE error', action.payload.payload.response.data.error)
@@ -51,24 +57,55 @@ const userReducer = (state = initialState, action) => {
         verified: newVerified,
         error: newError,
       };
+      
     case types.SIGNUP:
       newNeedsToSignup = action.payload;
       return {
         ...state,
         needsToSignup: newNeedsToSignup,
       };
+
     case types.POST_CREATE_USER_SUCCESS:
-      console.log('in createuser succ reduce')
       newUserCreated = true;
       return {
         ...state,
         userCreated: newUserCreated,
       };
+
     case types.POST_CREATE_USER_FAILURE:
       return {
         ...state,
       };
-    
+
+    case types.POST_GET_ART_SUCCESS:
+      newArtRecieved = true;
+      newArt = action.payload.payload;
+      console.log('this is newArt ', newArt)
+
+      const newArtParsed = newArt.map(el => {
+        return (
+        <div className="artUnit">
+        <img src={el.image} style={{height: 100 }}></img>
+        <p className="unitTitle">{el.title}</p>
+        <p>Artist: {el.artist}</p>
+        <p>Description: {el.description}</p>
+        <p>Material: {el.material}</p>
+        <p>Price: {el.price}</p>
+        </div>
+        )
+      })
+
+      return {
+        ...state,
+        artRecieved: newArtRecieved,
+        art: newArtParsed,
+      };
+      
+    case types.POST_GET_ART_FAILURE:
+      return {
+        ...state,
+      };
+
       default:
         return state;
   }
