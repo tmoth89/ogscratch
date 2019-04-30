@@ -33,7 +33,7 @@ module.exports = {
       }
     })
   },
-  // SELECT * FROM art WHERE (69 * SQRT((POW(-118.470719-"lng",2))+(POW(33.987851-"lat",2))) < 4000);
+
   lookupSession: (req, res, next) => {
     if (res.locals.error) return next();
     db.query(`SELECT t.user FROM testauth t INNER JOIN sessions s ON t.id = s.testid WHERE s.sessionid='${res.locals.token}'`, (err,result) => {
