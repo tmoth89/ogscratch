@@ -46,9 +46,9 @@ class Signin extends Component {
     return (
       <div>
         <h3>Please Login</h3>
-        <label for="loginUsername">Username</label>
+        <label htmlFor="username">Username</label>
         <input type="text" onChange={(e) => this.props.loginUsername(e)} id="username" placeholder="username"></input>
-        <label for="loginPassword">Password</label>
+        <label htmlFor="password">Password</label>
         <input type="password" onChange={(e) => this.props.loginPassword(e)} id="password" placeholder="password"></input>
         <button onClick={(e) => { e.preventDefault(); this.props.verifyLogin(this.props.username, this.props.password)}}>Login</button>
         <br></br>
