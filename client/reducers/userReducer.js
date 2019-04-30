@@ -12,6 +12,7 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
+  //declared variables to make sure we update state with new state.
   let newVerified;
   let newError;
   let newUsername;
@@ -21,23 +22,23 @@ const userReducer = (state = initialState, action) => {
   let newArtRecieved;
   let newArt;
 
-  switch(action.type) {
+  switch (action.type) {
+    //If you watch STATE in Redux devTools, you will see it update everytime a user types a letter
     case types.LOGIN_USERNAME:
       newUsername = action.payload.value;
       return {
         ...state,
         username: newUsername,
       };
-
+    //If you watch STATE in Redux devTools, you will see it update everytime a user types a letter
     case types.LOGIN_PASSWORD:
       newPassword = action.payload.value;
       return {
-          ...state,
-          password: newPassword,
+        ...state,
+        password: newPassword,
       };
 
     case types.POST_USERNAME_AND_PASSWORD_SUCCESS:
-      console.log('in post sign in reduce')
       newVerified = true;
       return {
         ...state,
@@ -45,10 +46,8 @@ const userReducer = (state = initialState, action) => {
         // May need to reset certain areas of state (error, etc.)
         // error: null
       };
-      
+
     case types.POST_USERNAME_AND_PASSWORD_FAILURE:
-      // console.log('IN FAILUREREDUC', action.payload)
-      // console.log('IN FAILURE error', action.payload.payload.response.data.error)
       newVerified = false;
       //coordinate with backend re err sent back from server//
       newError = action.payload.payload.response.data.error;
@@ -57,7 +56,7 @@ const userReducer = (state = initialState, action) => {
         verified: newVerified,
         error: newError,
       };
-      
+
     case types.SIGNUP:
       newNeedsToSignup = action.payload;
       return {
@@ -81,17 +80,17 @@ const userReducer = (state = initialState, action) => {
       newArtRecieved = true;
       newArt = action.payload.payload;
       //console.log('this is newArt ', newArt)
-
+      //We actually do the below mapping in component HOME, this code below may be unneccessary 
       const newArtParsed = newArt.map(el => {
         return (
-        <div className="artUnit">
-        <img src={el.image} style={{height: 100 }}></img>
-        <p className="unitTitle">{el.title}</p>
-        <p>Artist: {el.artist}</p>
-        <p>Description: {el.description}</p>
-        <p>Material: {el.material}</p>
-        <p>Price: {el.price}</p>
-        </div>
+          <div className="artUnit">
+            <img src={el.image} style={{ height: 100 }}></img>
+            <p className="unitTitle">{el.title}</p>
+            <p>Artist: {el.artist}</p>
+            <p>Description: {el.description}</p>
+            <p>Material: {el.material}</p>
+            <p>Price: {el.price}</p>
+          </div>
         )
       })
 
@@ -100,14 +99,14 @@ const userReducer = (state = initialState, action) => {
         artRecieved: newArtRecieved,
         art: newArtParsed,
       };
-      
+
     case types.POST_GET_ART_FAILURE:
       return {
         ...state,
       };
 
-      default:
-        return state;
+    default:
+      return state;
   }
 }
 
