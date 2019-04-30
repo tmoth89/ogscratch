@@ -34,9 +34,8 @@ class Home extends Component {
       return displayArt = res.map(el => {
         return (
         <div className="artUnit">
-        <img src={el.image} style={{height: 100 }}></img>
-        <p className="unitTitle">{el.title}</p>
-        <p>Artist: {el.artist}</p>
+        <img src={el.image} style={{height: 800 }}></img>
+        <p className="unitTitle"><strong>{el.title}</strong></p>
         <p>Description: {el.description}</p>
         <p>Material: {el.material}</p>
         <p>Price: {el.price}</p>
@@ -45,17 +44,12 @@ class Home extends Component {
     })
   })
 }
-
-  // shouldComponentUpdate () {
-  //   console.log('in component did update')
-  //   displayArt = this.props.art;
-  // }
   
   render() {
-    console.log(this.props.art)
     return (
       <div>
-      <h2>HOMEPAGE GET ART TEST</h2>
+        <h2>Current Art Available</h2>
+      {console.log('this is display art', displayArt)}
       {displayArt}
       </div>
     )

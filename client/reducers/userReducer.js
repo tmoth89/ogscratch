@@ -80,7 +80,7 @@ const userReducer = (state = initialState, action) => {
     case types.POST_GET_ART_SUCCESS:
       newArtRecieved = true;
       newArt = action.payload.payload;
-      console.log('this is newArt ', newArt)
+      //console.log('this is newArt ', newArt)
 
       const newArtParsed = newArt.map(el => {
         return (
