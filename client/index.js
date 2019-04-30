@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import Root from './Root';
 import store from './store';
 
-// require('./styles.css')
+// require('./styles.css') - not using in
 
 render(
     <Root store={store} />
-    ,document.getElementById('root')
+    , document.getElementById('root')
 )
