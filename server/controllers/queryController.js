@@ -11,6 +11,7 @@ module.exports = {
 
   signIn: (req, res, next) => {
     console.log('+++++req.BODY in testSignIn', req.body);
+    // Make sure to only grab relevant information for security reasons... we selected all for testing purposes.
     db.query(`SELECT * FROM accounts WHERE ("username"='${req.body.username}')`, (err, result) => {
       if (err) res.locals.error = err; 
       else {
@@ -38,8 +39,10 @@ module.exports = {
     })
   },
 
+  // This method has been tested in POSTMAN and it WORKS! Come see Jaime or Keith if any questions.
   findByDistance: (req, res, next) => {
     console.log(res.locals.result);
+    // PYTHAGOREAN THEOREM to determine distance between two plotted points. Since our unit of measurement in this formula is degrees of lat/long, we multiply by 69 to convert it into miles (each degree is 60 nautical miles, and there are 1.15 statute miles in a nautical mile-- 60 * 1.15 = 69)
     db.query(`SELECT * FROM art WHERE (69 * SQRT((POW(${res.locals.result.lng}-"lng",2))+(POW(${res.locals.result.lat}-"lat",2))) < ${req.body.distance})` , (err, result) => {
       if (err) {
         res.locals.error = err
