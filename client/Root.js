@@ -9,8 +9,8 @@ import store from './store';
 
 // require('./styles.css'); - we just have not used any styling
 
-//IMPORTANT - any new components added that will be displayed upon rerouting, must make route here first. Follow pattern below. 
-const Root = ({ store }) => (
+
+const Root = () => (
     <Provider store={store}>
         <Router>
             <Route path='/' component={Main} />

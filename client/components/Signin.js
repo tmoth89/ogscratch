@@ -15,18 +15,10 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loginUsername: (event) => {
-    dispatch(actions.loginUsername(event.target))
-  },
-  loginPassword: (event) => {
-    dispatch(actions.loginPassword(event.target))
-  },
-  verifyLogin: (username, password) => {
-    dispatch(actions.verifyLogin(username, password))
-  },
-  signup: () => {
-    dispatch(actions.signup())
-  },
+  loginUsername: (event) => {dispatch(actions.loginUsername(event.target))},
+  loginPassword: (event) => {dispatch(actions.loginPassword(event.target))},
+  verifyLogin: (username, password) => {dispatch(actions.verifyLogin(username, password))},
+  signup: () => {dispatch(actions.signup())},
 })
 class Signin extends Component {
   constructor(props) {
@@ -44,7 +36,7 @@ class Signin extends Component {
     }
 
     return (
-      <div>
+      <div className="sign-in">
         <h3>Please Login</h3>
         <label htmlFor="username">Username</label>
         <input type="text" onChange={(e) => this.props.loginUsername(e)} id="username" placeholder="username"></input>

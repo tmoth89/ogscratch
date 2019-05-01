@@ -6,15 +6,16 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
-  mode: process.env.NODE_ENV,
+  // mode: process.env.NODE_ENV,
+  mode: 'development',
 
   devServer : {
     publicPath: 'http://localhost:8080/build/',
     compress: true,
     historyApiFallback: true,
     proxy: {
-      '/': 'http://localhost:3000/',
-      '/api': 'http://localhost:3000',
+      // '/': 'http://localhost:3000/',
+      '/api': 'http://localhost:3000'
     }
   },
   module: {
