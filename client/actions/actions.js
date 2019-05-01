@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 const axios = require('axios');
-import thunk from 'redux-thunk';
+
 
 export const loginUsername = (username) => ({
 	type: types.LOGIN_USERNAME,
@@ -32,7 +32,7 @@ export const verifyLogin = (username, password) => (dispatch) => {
         data: { 'username': username, 'password': password },
     })
     .then(response => {
-        console.log('this is res', response.data)
+        console.log('verifyLogin response', response.data)
         // return res.json()
         return dispatch(
             postUsernameAndPasswordSuccess({
@@ -73,7 +73,7 @@ export const createuser = (username, password) => (dispatch) => {
     console.log('in createuser function about to post request')
     axios({
         method: 'post',
-        url: '/api/testauth',
+        url: './api/testauth',
         data: { 'username': username, 'password': password },
     })
     .then(response => {
@@ -93,6 +93,7 @@ export const createuser = (username, password) => (dispatch) => {
       )
     )
 }
+
 export const postCreateUserSuccess = (res) => ({
     type: types.POST_CREATE_USER_SUCCESS,
     payload: res
@@ -111,20 +112,19 @@ export const getArt = () => (dispatch) => {
         url: '/api/getallart'
     })
     .then(response => {
-        return dispatch(
-            postGetArtSuccess({
+        dispatch(
+            ({
                 type: types.POST_GET_ART_SUCCESS,
                 payload: response.data
             })
         )
     })
-    .catch(
-        error => dispatch(
-            postGetArtFailure({
+    .catch(error => {dispatch(
+            ({
                 type: types.POST_GET_ART_FAILURE,
                 payload: error
         })
-      )
+      )}
     )
 }
 

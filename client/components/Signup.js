@@ -34,7 +34,7 @@ class Signup extends Component {
         return <Redirect to="/Home"></Redirect>
       }
       return (
-        <div>
+        <div className="sign-up">
         <h3>Signup</h3>
         <label for="loginUsername">Username</label>
         <input type="text" onChange={(e) => this.props.loginUsername(e)} id="username" placeholder="username"></input>

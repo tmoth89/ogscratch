@@ -8,6 +8,6 @@ import store from './store';
 // require('./styles.css')
 
 render(
-    <Root store={store} />
+    <Root />
     ,document.getElementById('root')
 )

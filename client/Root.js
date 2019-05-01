@@ -10,7 +10,7 @@ import store from './store';
 // require('./styles.css');
 
 
-const Root = ({store}) => (
+const Root = () => (
     <Provider store={store}>
         <Router>
             <Route path='/' component={Main} />
