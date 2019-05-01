@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, Link, BrowserRouter  as Router } from 'react-router-dom'; // removed Switch, Redirect
+import { Route, Redirect, Link, BrowserRouter as Router } from 'react-router-dom'; // removed Switch, Redirect
 import { Provider } from 'react-redux';
 import Signin from './components/Signin';
 import Main from './containers/MainContainer';
@@ -7,7 +7,7 @@ import Home from './components/Home';
 import Signup from './components/Signup';
 import store from './store';
 
-// require('./styles.css');
+// require('./styles.css'); - we just have not used any styling
 
 
 const Root = () => (
@@ -16,7 +16,7 @@ const Root = () => (
             <Route path='/' component={Main} />
             <Route path='/signin' component={Signin} />
             <Route path='/home' component={Home} />
-            <Route path='/signup' component={Signup}/>
+            <Route path='/signup' component={Signup} />
         </Router>
     </Provider>
 )

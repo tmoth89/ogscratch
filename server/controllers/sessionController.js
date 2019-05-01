@@ -47,4 +47,3 @@ module.exports = {
     })
   },
 }
-// SELECT * FROM art WHERE (69 * SQRT((POW(-118.470719-"lng",2))+(POW(33.987851-"lat",2))) < 4000);

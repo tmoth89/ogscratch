@@ -1,12 +1,13 @@
 const { Client } = require('pg');
-
+const DB_KEYS = require('./DB_KEYS')
 const client = new Client({
-  user: 'srbxdloa',
-  host: 'isilo.db.elephantsql.com',
-  database: 'srbxdloa',
-  password: '3qX2xRdx-yM_30nR5Svg_kJcr_-I4m0A', // need to hide the password
+  user: DB_KEYS.USER,
+  host: DB_KEYS.HOST,
+  database: DB_KEYS.USER,
+  password: DB_KEYS.PASSWORD, // need to hide the password
   port: '5432',
 })
+//terminal: psql -d srbxdloa -h isilo.db.elephantsql.com -U srbxdloa
 
 client.connect((err) => {
   if (err) {

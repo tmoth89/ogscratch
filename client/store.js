@@ -6,7 +6,7 @@ import reducers from './reducers/index';
 
 const store = createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(thunk)) //must keep this to utilize THUK
 );
 
 export default store;

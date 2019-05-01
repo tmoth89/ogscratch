@@ -36,9 +36,9 @@ class Signup extends Component {
       return (
         <div className="sign-up">
         <h3>Signup</h3>
-        <label for="loginUsername">Username</label>
+        <label htmlFor="username">Username</label>
         <input type="text" onChange={(e) => this.props.loginUsername(e)} id="username" placeholder="username"></input>
-        <label for="loginPassword">Password</label>
+        <label htmlFor="password">Password</label>
         <input type="password" onChange={(e) => this.props.loginPassword(e)} id="password" placeholder="password"></input>
         <button onClick={(e) => { e.preventDefault(); this.props.createuser(this.props.username, this.props.password)}}>Create Account</button>
         </div>
