@@ -12,7 +12,7 @@ module.exports = {
   testSignIn: (req, res, next) => {
     console.log('+++++req.BODY in testSignIn', req.body);
     db.query(`SELECT * FROM testauth WHERE ("user"='${req.body.username}')`, (err, result) => {
-      if (err) res.locals.error = err; 
+      if (err) res.locals.error = err;
       else {
         res.locals.result = result.rows[0]; // we have access to the hash
         if (res.locals.result === undefined) res.locals.error = {error: 'Invalid username'};
@@ -21,11 +21,11 @@ module.exports = {
       return next();
     })
   },
-  
+
   testAuth: (req, res, next) => {
     const queryValues = [req.body.username, req.body.password];
     const insertQuery = `INSERT INTO testauth("user","password") VALUES($1, $2) RETURNING *`;
-    
+
     // console.log('** queryValues inside testAuth', queryValues);
 
     db.query(insertQuery, queryValues, (err, result) => {

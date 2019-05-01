@@ -46,7 +46,7 @@ export const verifyLogin = (username, password) => (dispatch,getState) => {
     )
 }
 
-//Used above in verifyLogin, utilizing THUNK 
+//Used above in verifyLogin, utilizing THUNK
 export const postUsernameAndPasswordSuccess = (res) => ({
   type: types.POST_USERNAME_AND_PASSWORD_SUCCESS,
   payload: res
@@ -63,7 +63,7 @@ export const signup = () => ({
   payload: true
 });
 
-//Using THUNK. Once a user enters a username and password, and clicks button Create Account (go to component Signup), this action creator sends a POST request to server. 
+//Using THUNK. Once a user enters a username and password, and clicks button Create Account (go to component Signup), this action creator sends a POST request to server.
 export const createuser = (username, password) => (dispatch) => {
   console.log('in createuser function about to post request')
   axios({
