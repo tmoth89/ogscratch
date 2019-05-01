@@ -67,11 +67,11 @@ app.post('/api/testsignin',
   testBcryptController.verifyPassword,
   testCookieController.setSSIDCookie,
   testSessionController.verifySession,
-  testSessionController.lookupSession,
+  // testSessionController.lookupSession,
   (req, res) => {
     if (res.locals.error) {
+      res.status(403);
       res.send(res.locals.error);
-      res.status(501);
     }
     else res.send(res.locals.result);
   });
