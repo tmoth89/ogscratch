@@ -1,0 +1,24 @@
+.home {
+    text-align: center;
+    display: block
+
+}
+
+.sign-in {
+    text-align: center;
+    display: block
+
+}
+
+.sign-up {
+    text-align: center;
+    display: block
+}
+body {
+    background-color: green;
+}
+.artUnit {
+    padding: 4px;
+    border: 2px solid darkgreen;
+    border-radius: 15px
+}

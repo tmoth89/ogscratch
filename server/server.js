@@ -26,6 +26,12 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+// app.get('/api/styles.css', (req,res)=>{
+//   res.set('Content-Type','text/css').status(200).send(__dirname, "../styles.css")
+// })
+
+
 app.get('/api/getallart/', testQueryController.getAllArt, (req, res) => {
   if (res.locals.error) res.send(res.locals.error);
   else res.send(res.locals.result.rows);
@@ -39,6 +45,7 @@ app.post('/api/testauth/',
   testSessionController.verifySession,
   testSessionController.lookupSession,
   (req, res) => {
+    console.log(req.body)
     if (res.locals.error) res.send(res.locals.error);
     else res.send(res.locals.result);
   });

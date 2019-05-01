@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 const axios = require('axios');
-import thunk from 'redux-thunk';
+
 
 //For user login
 export const loginUsername = (username) => ({
@@ -25,15 +25,14 @@ export const verifyLogin = (username, password) => (dispatch,getState) => {
     data: { 'username': username, 'password': password }, //must send body of data in this format
   })
     .then(response => {
-      console.log('this is res', response.data)
-      //Once we receive a "no error" response from server, we dispatch action creator postUsernameAndPasswordSuccess
-      //Dispatch takes an object as an argument (action creator object)
-      return dispatch(
-        postUsernameAndPasswordSuccess({
-          type: types.POST_USERNAME_AND_PASSWORD_SUCCESS,
-          payload: response.data
-        })
-      )
+        console.log('verifyLogin response', response.data)
+        // return res.json()
+        return dispatch(
+            postUsernameAndPasswordSuccess({
+                type: types.POST_USERNAME_AND_PASSWORD_SUCCESS,
+                payload: response.data
+            })
+        )
     })
     //If we receive an error from the server (i.e. incorrect username or password), we dispatch action creator postUsernameAndPasswordFailure
     .catch(
@@ -90,9 +89,8 @@ export const createuser = (username, password) => (dispatch) => {
         })
       )
     )
-};
+}
 
-//Used above in action creator createUser (utilizing THUNK)
 export const postCreateUserSuccess = (res) => ({
   type: types.POST_CREATE_USER_SUCCESS,
   payload: res
@@ -112,23 +110,20 @@ export const getArt = () => (dispatch) => {
     url: '/api/getallart' //api test route
   })
     .then(response => {
-      //Once we receive a "no error" response from server, we dispatch action creator postGetArtSuccess
-      //Dispatch takes an object as an argument (action creator object)
-      return dispatch(
-        postGetArtSuccess({
-          type: types.POST_GET_ART_SUCCESS,
-          payload: response.data
-        })
-      )
+        dispatch(
+            ({
+                type: types.POST_GET_ART_SUCCESS,
+                payload: response.data
+            })
+        )
     })
-    .catch(
-      //If we receive an error from the server (i.e. something failed), we dispatch action creator postGetArtFailure
-      error => dispatch(
-        postGetArtFailure({
-          type: types.POST_GET_ART_FAILURE,
-          payload: error
+    .catch(error => {
+      dispatch(
+            ({
+                type: types.POST_GET_ART_FAILURE,
+                payload: error
         })
-      )
+      )}
     )
 }
 

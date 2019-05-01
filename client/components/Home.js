@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import { Redirect } from 'react-router-dom';
 
-let displayArt;
+import ArtUnit from './ArtUnit.jsx';
 
 const mapStateToProps = store => ({
   error: store.userTraffic.error,
@@ -11,9 +11,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getArt: () => {
-    dispatch(actions.getArt())
-  }
+  getArt: () => {dispatch(actions.getArt())}
 });
 
 
@@ -22,35 +20,30 @@ class Home extends Component {
     super(props)
   }
   
-  componentDidMount() {
-    // console.log('in didmount')
-    // this.props.getArt();
-    fetch('http://localhost:3000/api/getallart')
-    .then(res => {
-      return res.json()
-    })
-    .then(res => {
-      console.log('this is res in componened did mount ',res)
-      return displayArt = res.map(el => {
-        return (
-        <div className="artUnit">
-        <img src={el.image} style={{height: 800 }}></img>
-        <p className="unitTitle"><strong>{el.title}</strong></p>
-        <p>Description: {el.description}</p>
-        <p>Material: {el.material}</p>
-        <p>Price: {el.price}</p>
-        </div>
-        )
-    })
-  })
-}
-  
-  render() {
+  // console.log('in didmount')
+  componentDidMount(){
+      this.props.getArt()
+  }
+    
+    
+    render() {
+      let displayArt = [];
+      let art = this.props.art;
+      art.forEach((item,i) => {
+            displayArt.push(<ArtUnit 
+            key={i}
+            image={item.image} 
+            title={item.title} 
+            description={item.description}
+            material={item.material}
+            price={item.price}
+            />)
+        })
+    
     return (
-      <div>
+      <div className="home">
         <h2>Current Art Available</h2>
-      {console.log('this is display art', displayArt)}
-      {displayArt}
+        {displayArt}
       </div>
     )
   }
