@@ -99,19 +99,19 @@ export const createuser = (username, password) => (dispatch) => {
       //Once we receive a "no error" response from server, we dispatch action creator postCreateUserSuccess
       //Dispatch takes an object as an argument (action creator object)
       return dispatch(
-        postCreateUserSuccess({
+        {
           type: types.POST_CREATE_USER_SUCCESS,
           payload: response.data
-        })
+        }
       )
     })
     //If we receive an error from the server (i.e. missing username or password), we dispatch action creator postCreateUserFailure
     .catch(
       error => dispatch(
-        postCreateUserFailure({
+        {
           type: types.POST_CREATE_USER_FAILURE,
           payload: error
-        })
+        }
       )
     )
 }
@@ -166,8 +166,7 @@ export const postGetArtFailure = (err) => ({
 });
 
 
-export const getArt = () => (dispatch) => {
-  
+export const logout = () => (dispatch) => {
 
   axios({
     method: 'get',
