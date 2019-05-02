@@ -14,15 +14,27 @@ const mapStateToProps = store => ({
   error: store.userTraffic.error
 });
 
+const mapDispatchToProps = dispatch => ({
+  checkSession: () => {dispatch(actions.checkSession())}
+
+});
+
+
+
 
 class MainContainer extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount(){
+    this.props.checkSession()
+  }
+
   render() {
     if (this.props.verified != true && loaded === false) {
         loaded = true;
+        console.log(`Redirecting from /main comp`);
         return <Redirect to="/signin"></Redirect>
     }
     // if (this.props.verified === true && loaded === false) {
@@ -39,4 +51,4 @@ class MainContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps)(MainContainer);
+export default connect(mapStateToProps,mapDispatchToProps)(MainContainer);
