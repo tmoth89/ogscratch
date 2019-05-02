@@ -166,8 +166,7 @@ export const postGetArtFailure = (err) => ({
 });
 
 
-export const getArt = () => (dispatch) => {
-  
+export const logout = () => (dispatch) => {
 
   axios({
     method: 'get',
