@@ -3,18 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-<<<<<<< HEAD
-const queryController = require('./controllers/queryController.js');
-const bcryptController = require('./controllers/bcryptController.js');
-const cookieController = require('./controllers/cookieController.js');
-const sessionController = require('./controllers/sessionController.js');
-=======
-// const queryController = require('./controllers/queryController.js');
-// const bcryptController = require('./controllers/bcryptController.js');
-// const cookieController = require('./controllers/cookieController.js');
-// const sessionController = require('./controllers/sessionController.js');
 
->>>>>>> upstream/master
 const testQueryController = require('./controllers/testQueryController.js');
 const testBcryptController = require('./controllers/testBcryptController.js');
 const testCookieController = require('./controllers/testCookieController.js');
@@ -96,14 +85,6 @@ app.post('/api/testsignin',
     }
   });
 
-  app.post('/api/findbydistance',
-  queryController.signIn,
-  cookieController.setSSIDCookie,
-  sessionController.lookupSession,
-  queryController.findByDistance, (req, res) => {
-
-    else res.send(res.locals.result);
-  });
 
 app.post('/api/findbydistance',
   testQueryController.testSignIn,

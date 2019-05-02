@@ -3,8 +3,10 @@ const db = require('../db.js');
 
 const superSecretKey = 'j0909jfjJGpEpSiKAij4893tgnp30';
 
-module.exports = {
+module.exports =
+{
   setSSIDCookie: (req, res, next) => {
+    console.log('Cookie Started.')
     if (res.locals.error) return next();
 
     // CREATING A COOKIE IF IT DOESN'T EXIST IN THE CLIENT
@@ -22,7 +24,7 @@ module.exports = {
     return next();
   },
   checkCookies: (req, res, next) => {
-
+     console.log('check cookies')
     if (req.cookies) {
       let username;
       let cookie;

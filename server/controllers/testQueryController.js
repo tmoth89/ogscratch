@@ -2,6 +2,7 @@ const db = require('../db.js');
 
 module.exports = {
   getAllArt: (req, res, next) => {
+    console.log('testQuery')
     db.query('SELECT * FROM art', (err, result) => {
       if (err) res.locals.error = err;
       else res.locals.result = result;

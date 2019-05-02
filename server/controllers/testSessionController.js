@@ -5,7 +5,6 @@ module.exports = {
 
   verifySession: (req, res, next) => {
     if (res.locals.error) return next();
-
     console.log("Starting verify session:")
 
     db.query(`SELECT * FROM sessions WHERE sessionid='${res.locals.token}'`, (err,result) => {
