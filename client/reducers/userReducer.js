@@ -117,6 +117,21 @@ const userReducer = (state = initialState, action) => {
         ...state,
       };
 
+      case types.LOG_OUT:
+      newVerified = false;
+      console.log(`Session has logged out: ${action.payload}`);
+        return {
+           ...state,
+           verified : newVerified
+        };
+
+        case types.LOGOUT_ERROR:
+        console.log(`Session has error: ${action.payload}`);
+          return {
+             ...state,
+             error : newVerified
+          };
+
     default:
       return state;
   }

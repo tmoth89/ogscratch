@@ -25,6 +25,19 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get('/api/logout', (req, res) =>
+{
+    cookie = req.cookies;
+   for (var prop in cookie) {
+       if (!cookie.hasOwnProperty(prop)) {
+           continue;
+       }
+       res.cookie(prop, '', {expires: new Date(0)});
+       res.send();
+   }
+
+})
+
 
 app.get('/api/getallart/', testQueryController.getAllArt, (req, res) => {
   if (res.locals.error) res.send(res.locals.error);

@@ -31,8 +31,7 @@ class Signin extends Component {
   }
 
   render() {
-    if (this.props.verified === true && homeloaded === false) {
-      homeloaded = true;
+    if(this.props.verified === true) {
       return <Redirect to="/Home"></Redirect>
     }
     else if (this.props.needsToSignup === true && signuploaded === false) {
@@ -42,7 +41,7 @@ class Signin extends Component {
 
     return (
       <div>
-        <Login 
+        <Login
         loginPassword={this.props.loginPassword}
         loginUsername={this.props.loginUsername}
         verifyLogin={this.props.verifyLogin}
@@ -50,7 +49,7 @@ class Signin extends Component {
         />
       </div>
     )
-    
+
   }
 }
 

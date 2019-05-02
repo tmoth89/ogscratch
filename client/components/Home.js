@@ -9,6 +9,7 @@ import ArtUnit from './ArtUnit.jsx';
 const mapStateToProps = store => ({
   error: store.userTraffic.error,
   art: store.userTraffic.art,
+  verified: store.userTraffic.verified
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -21,35 +22,38 @@ class Home extends Component {
   constructor(props) {
     super(props)
   }
-  
+
   // console.log('in didmount')
   componentDidMount(){
       this.props.getArt()
   }
-    
-    
+
+
     render() {
       let displayArt = [];
       let art = this.props.art;
       art.forEach((item,i) => {
-            displayArt.push(<ArtUnit 
+            displayArt.push(<ArtUnit
             key={i}
-            image={item.image} 
-            title={item.title} 
+            image={item.image}
+            title={item.title}
             description={item.description}
             material={item.material}
             price={item.price}
             />)
         })
-    
+
+        if (this.props.verified === false) {
+          console.log('Sign Up Here');
+          return <Redirect to="/signin"></Redirect>
+        }
     return (
       <div className="home">
-      <button onClick={this.props.logout}>Logout</button>
         <h2>Current Art Available</h2>
         {displayArt}
       </div>
     )
   }
 }
-  
+
  export default connect(mapStateToProps, mapDispatchToProps)(Home);

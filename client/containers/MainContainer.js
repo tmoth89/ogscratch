@@ -15,11 +15,9 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  checkSession: () => {dispatch(actions.checkSession())}
-
+  checkSession: () => {dispatch(actions.checkSession())},
+  logout: () => {dispatch(actions.logout())}
 });
-
-
 
 
 class MainContainer extends Component {
@@ -45,9 +43,10 @@ class MainContainer extends Component {
     return (
       <div className="MainContainer">
         <h1 className="welcomeText">Welcome to THE Artful Collective.</h1>
+          <button id = 'clicker' onClick={this.props.logout}>Logout</button>
       </div>
     )
-    
+
   }
 }
 

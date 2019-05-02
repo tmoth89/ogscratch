@@ -168,18 +168,16 @@ export const postGetArtFailure = (err) => ({
   payload: err
 });
 
-
-
 export const logout = () => (dispatch) => {
 
   axios({
     method: 'get',
-    url: '/api/getallart' //api test route
+    url: '/api/logout' //api test route
   })
     .then(response => {
       dispatch(
         ({
-          type: types.POST_GET_ART_SUCCESS,
+          type: types.LOG_OUT,
           payload: response.data
         })
       )
@@ -187,7 +185,7 @@ export const logout = () => (dispatch) => {
     .catch(error => {
       dispatch(
         ({
-          type: types.POST_GET_ART_FAILURE,
+          type: types.LOGOUT_ERROR,
           payload: error
         })
       )
