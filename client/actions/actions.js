@@ -164,3 +164,31 @@ export const postGetArtFailure = (err) => ({
   type: types.POST_GET_ART_FAILURE,
   payload: err
 });
+
+
+export const getArt = () => (dispatch) => {
+  
+
+  axios({
+    method: 'get',
+    url: '/api/getallart' //api test route
+  })
+    .then(response => {
+      dispatch(
+        ({
+          type: types.POST_GET_ART_SUCCESS,
+          payload: response.data
+        })
+      )
+    })
+    .catch(error => {
+      dispatch(
+        ({
+          type: types.POST_GET_ART_FAILURE,
+          payload: error
+        })
+      )
+    }
+    )
+
+}

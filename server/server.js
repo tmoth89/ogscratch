@@ -98,6 +98,10 @@ app.post('/api/findbydistance',
     else res.send(res.locals.result);
   })
 
+app.get('/api/logout', (req,res) => {
+  
+})
+
 app.get('/*', (req, res) => {
   console.log('Hit Default route - sending to index');
   res.sendFile(path.join(__dirname, '../index.html'))
