@@ -12,15 +12,9 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loginUsername: (event) => {
-    dispatch(actions.loginUsername(event.target))
-  },
-  loginPassword: (event) => {
-    dispatch(actions.loginPassword(event.target))
-  },
-  createuser: (username, password) => {
-    dispatch(actions.createuser(username, password))
-  }
+  loginUsername: (event) => {dispatch(actions.loginUsername(event.target))},
+  loginPassword: (event) => {dispatch(actions.loginPassword(event.target))},
+  createuser: (username, password) => {dispatch(actions.createuser(username, password))}
 })
 
 class Signup extends Component {
