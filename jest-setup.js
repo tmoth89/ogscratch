@@ -44,6 +44,7 @@ async function insertIntoTable(tableName, row) {
 
     db.query(query, values, (err, result) => {
       console.log("Query Done");
+      if (err) console.log(err);
       resolve() //error checking is for chumps
     })
 
@@ -54,32 +55,61 @@ async function insertIntoTable(tableName, row) {
 module.exports = async () => {
   console.log("Jest SetUP-------------------------");
 
-  //need to drop art table first
+  let tables = ['test_art', 'test_accounts']
+  let columnsNames = [constants.accountColumns, constants.artColumns]
+  let columnValues = [constants.accounts, constants.arts]
 
-  let currentTable = 'test_accounts'
-  await dropTable(currentTable);
-  console.log(`${currentTable} dropped`);
-  await createTable(currentTable, constants.accountColumns);
-  console.log(`${currentTable} created`);
+  //drop all tables
+  for (let i = 0; i < tables.length; i++) {
+    let currentTable = tables[i];
+    console.log(`Dropping: ${currentTable}`);
+    await dropTable(currentTable);
+    console.log(`${currentTable} dropped`);
 
-  console.log("Insert begin");
-  for (let i = 0; i < constants.accounts.length; i++) {
-    const account = constants.accounts[i];
-    await insertIntoTable(currentTable, account);
-    console.log("-------------------");
+  }
+  //create tables - order is important here
+  //must create accounts before arts
+  for (let i = 0; i < columnsNames.length; i++) {
+    const columns = columnsNames[i];
+    console.log(`Creating: ${currentTable} ===================`);
+    await createTable(currentTable, columns);
   }
 
-console.log(`Insert End`);
+  // let currentTable = 'test_art'
+  // await dropTable(currentTable);
+  // console.log(`${currentTable} dropped`);
 
+  // currentTable = 'test_accounts'
+  // await dropTable(currentTable);
+  // console.log(`${currentTable} dropped`);
+  // await createTable(currentTable, constants.accountColumns);
+  // console.log(`${currentTable} created`);
 
+  // let insertValues = constants.accounts;
 
+  // console.log("Insert begin");
+  // for (let i = 0; i < constants.accounts.length; i++) {
+  //   const account = constants.accounts[i];
+  //   await insertIntoTable(currentTable, account);
+  //   console.log("-------------------");
+  // }
+  // console.log(`Insert End`);
 
+  // console.log(`Create Test Art Table`);
+  // currentTable = 'test_art'
 
-  // await dropTable('test_art');
-  // console.log('Art Table dropped');
-  // // let addedTable = await createAccounts();
-  // await createTable('test_art',constants.artColumns);
-  // console.log('Art table created');
+  // await createTable(currentTable, constants.artColumns);
+  // console.log(`${currentTable} created`);
+
+  // insertValues = constants.accounts;
+
+  // console.log("Insert begin");
+  // for (let i = 0; i < constants.arts.length; i++) {
+  //   const art = constants.arts[i];
+  //   await insertIntoTable(currentTable, art);
+  //   console.log("-------------------");
+  // }
+  // console.log(`Insert End`);
 
 
 
