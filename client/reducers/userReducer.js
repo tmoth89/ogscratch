@@ -9,7 +9,7 @@ const initialState = {
   userCreated: false,
   artRecieved: false,
   art: [],
-  artList: []
+
 };
 
 const userReducer = (state = initialState, action) => {

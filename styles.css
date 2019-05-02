@@ -1,24 +1,172 @@
+.MainContainer {
+    text-align: center;
+}
+
 .home {
     text-align: center;
-    display: block
-
+    display: flex;
+    flex-direction: row;
+    overflow-x: visible;
+    white-space: wrap;
+    
 }
 
 .sign-in {
     text-align: center;
-    display: block
+    /* display: block; */
+    border-radius: 15px;
+    border: 1px solid blue;
+    width: 700px;
+    height: 700px;
+    font-size: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: center;
+}
+
+.login-but .signup-but{
+    font-size: 30px
+}
+/* .login-front .login-back {
+    position: absolute;
+    z-index:1;
+    max-width: 500px;
+    max-height: 500px;
+    width: 50ch;
+    height: 50ch;
+    background-size: cover;
+} */
+
+.login-back {
+    position: absolute;
+    top: 0;
+    left: 0;
 
 }
 
 .sign-up {
     text-align: center;
-    display: block
+    display: block;
+    border: 1px solid blue;
+    border-radius: 15px;
 }
-body {
-    background-color: green;
-}
+
 .artUnit {
-    padding: 4px;
+    padding: 15px;
+    margin:10px;
     border: 2px solid darkgreen;
-    border-radius: 15px
+    border-radius: 15px;
+    font-size: 25px;
+    display: inline-block;
+    font-family: Gill Sans Extrabold, sans-serif;
 }
+
+img {
+    box-shadow: 5px 5px 2px #888888;
+    margin: 10px;
+    background-size: cover;
+    cursor: pointer;
+    will-change: transform, opacity;
+} 
+
+.artInfo {
+    text-align: center;
+    /* width: 400px;
+    height:400px; */
+    margin: 0 auto;
+    font-size: 20px;
+    cursor: pointer;
+    will-change: transform, opacity;
+    background-size: cover
+}
+
+.info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* hover CSS animation */
+/* https://tympanus.net/codrops/2011/11/02/original-hover-effects-with-css3/ */
+
+.view {
+    margin: 10px;
+    /* border: 10px solid rgba(255, 99, 99, 0.924); */
+    border: 10px solid rgba(255, 255, 255, 0.924);
+    position: relative;
+    box-shadow: 1px 1px 2px #e6e6e6;
+    cursor: default;
+}
+
+.view .mask, .view .content{
+    position: absolute;
+    top: 0;
+}
+.view img {
+    /* display: block;
+    position: relative */
+}
+.view h2 {
+    text-align: center;
+    margin: 20px 0 0 0
+}
+.view p {
+    font-family: Georgia, serif;
+    color: #fff;
+    text-align: center;
+}
+.view .artInfo {
+    background: #000;
+    color: #fff;
+    font-size: 30px;
+    box-shadow: 0 0 1px #000
+}
+.view .artInfo:hover {
+    box-shadow: 0 0 5px #000;
+}
+
+
+/* .view-first img { 
+    transition: all 0.2s linear;
+}
+.view-first .artInfo {
+    opacity: 0;
+    background-color: rgba(219,127,8, 0.7); 
+    transition: all 0.4s ease-in-out;
+} */
+/* .view-first .title {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+} */
+/* .view-first p { 
+    transform: translateY(100px);
+    opacity: 0;
+	transition: all 0.2s linear;
+} */
+/* .view-first .artInfo{
+    opacity: 0;
+	transition: all 0.2s ease-in-out;
+} */
+
+/* .view-first:hover img { 
+    transform: scale(1.05);
+    /* transition: all 0.4s ease-in-out; */
+}  
+/* .view-first:hover .mask { 
+	opacity: 1;
+}
+.view-first:hover h2,
+.view-first:hover p,
+.view-first:hover .artInfo {
+    opacity: 1;
+    transform: translateY(0px);
+} */
+/* .view-first:hover p {
+    transition-delay: 0.1s;
+} */
+/* .view-first:hover .artInfo {
+    transition-delay: 0.2s;
+} */
