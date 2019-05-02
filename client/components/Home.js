@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actions';
 import { Redirect } from 'react-router-dom';
+
+import * as actions from '../actions/actions';
 
 import ArtUnit from './ArtUnit.jsx';
 
@@ -11,7 +12,8 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getArt: () => {dispatch(actions.getArt())}
+  getArt: () => {dispatch(actions.getArt())},
+  logout: () => {dispatch(actions.logout())}
 });
 
 
@@ -42,6 +44,7 @@ class Home extends Component {
     
     return (
       <div className="home">
+      <button onClick={this.props.logout}>Logout</button>
         <h2>Current Art Available</h2>
         {displayArt}
       </div>

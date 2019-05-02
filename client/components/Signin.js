@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actions';
 import { Redirect } from 'react-router-dom';
+
+import * as actions from '../actions/actions';
+
+import Login from './Login.jsx';
 
 let homeloaded = false;
 let signuploaded = false;
@@ -20,6 +23,8 @@ const mapDispatchToProps = dispatch => ({
   verifyLogin: (username, password) => {dispatch(actions.verifyLogin(username, password))},
   signup: () => {dispatch(actions.signup())},
 })
+
+
 class Signin extends Component {
   constructor(props) {
     super(props);
@@ -36,16 +41,13 @@ class Signin extends Component {
     }
 
     return (
-      <div className="sign-in">
-        <h3>Please Login</h3>
-        <label htmlFor="username">Username</label>
-        <input type="text" onChange={(e) => this.props.loginUsername(e)} id="username" placeholder="username"></input>
-        <label htmlFor="password">Password</label>
-        <input type="password" onChange={(e) => this.props.loginPassword(e)} id="password" placeholder="password"></input>
-        <button onClick={(e) => { e.preventDefault(); this.props.verifyLogin(this.props.username, this.props.password)}}>Login</button>
-        <br></br>
-        <br></br>
-        <button onClick={(e) => { e.preventDefault(); this.props.signup()}}>Signup</button>
+      <div>
+        <Login 
+        loginPassword={this.props.loginPassword}
+        loginUsername={this.props.loginUsername}
+        verifyLogin={this.props.verifyLogin}
+        signup={this.props.signup}
+        />
       </div>
     )
     

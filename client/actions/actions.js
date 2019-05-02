@@ -15,7 +15,7 @@ export const loginPassword = (password) => ({
 });
 
 //This is where we use THUNK. This action creator makes a POST request to the server to verify username and password entered when logging in.
-export const verifyLogin = (username, password) => (dispatch,getState) => {
+export const verifyLogin = (username, password) => (dispatch, getState) => {
   console.log('LOGIN SENT TO VERIFYLOGIN')
   console.log('THIS IS USERNAME', username)
   console.log('THIS IS PASSWORD', password)
@@ -25,14 +25,14 @@ export const verifyLogin = (username, password) => (dispatch,getState) => {
     data: { 'username': username, 'password': password }, //must send body of data in this format
   })
     .then(response => {
-        console.log('verifyLogin response', response.data)
-        // return res.json()
-        return dispatch(
-            postUsernameAndPasswordSuccess({
-                type: types.POST_USERNAME_AND_PASSWORD_SUCCESS,
-                payload: response.data
-            })
-        )
+      console.log('verifyLogin response', response.data)
+      // return res.json()
+      return dispatch(
+        postUsernameAndPasswordSuccess({
+          type: types.POST_USERNAME_AND_PASSWORD_SUCCESS,
+          payload: response.data
+        })
+      )
     })
     //If we receive an error from the server (i.e. incorrect username or password), we dispatch action creator postUsernameAndPasswordFailure
     .catch(
@@ -56,6 +56,31 @@ export const postUsernameAndPasswordFailure = (err) => ({
   payload: err
 });
 
+export const checkSession = () => (dispatch, getState) => {
+  axios({
+    method: 'get',
+    url: '/api/checksession'
+  })
+    .then(response => {
+      console.log('Valid Session, set verified');
+      console.log(response.status);
+      return dispatch({
+        type: "CHECK_SESSION",
+        payload: true
+      }
+      )
+    })
+    //If we receive an error from the server (i.e. incorrect username or password), we dispatch action creator postUsernameAndPasswordFailure
+    .catch(
+      error => dispatch(
+        {
+          type: "CHECK_SESSION",
+          payload: false
+        }
+      )
+    )
+}
+
 //This action creator is deployed when a user clicks the button Signup (go to component Signin)
 export const signup = () => ({
   type: types.SIGNUP,
@@ -74,19 +99,19 @@ export const createuser = (username, password) => (dispatch) => {
       //Once we receive a "no error" response from server, we dispatch action creator postCreateUserSuccess
       //Dispatch takes an object as an argument (action creator object)
       return dispatch(
-        postCreateUserSuccess({
+        {
           type: types.POST_CREATE_USER_SUCCESS,
           payload: response.data
-        })
+        }
       )
     })
     //If we receive an error from the server (i.e. missing username or password), we dispatch action creator postCreateUserFailure
     .catch(
       error => dispatch(
-        postCreateUserFailure({
+        {
           type: types.POST_CREATE_USER_FAILURE,
           payload: error
-        })
+        }
       )
     )
 }
@@ -110,20 +135,21 @@ export const getArt = () => (dispatch) => {
     url: '/api/getallart' //api test route
   })
     .then(response => {
-        dispatch(
-            ({
-                type: types.POST_GET_ART_SUCCESS,
-                payload: response.data
-            })
-        )
+      dispatch(
+        ({
+          type: types.POST_GET_ART_SUCCESS,
+          payload: response.data
+        })
+      )
     })
     .catch(error => {
       dispatch(
-            ({
-                type: types.POST_GET_ART_FAILURE,
-                payload: error
+        ({
+          type: types.POST_GET_ART_FAILURE,
+          payload: error
         })
-      )}
+      )
+    }
     )
 }
 
@@ -138,3 +164,33 @@ export const postGetArtFailure = (err) => ({
   type: types.POST_GET_ART_FAILURE,
   payload: err
 });
+<<<<<<< HEAD
+=======
+
+
+export const logout = () => (dispatch) => {
+
+  axios({
+    method: 'get',
+    url: '/api/getallart' //api test route
+  })
+    .then(response => {
+      dispatch(
+        ({
+          type: types.POST_GET_ART_SUCCESS,
+          payload: response.data
+        })
+      )
+    })
+    .catch(error => {
+      dispatch(
+        ({
+          type: types.POST_GET_ART_FAILURE,
+          payload: error
+        })
+      )
+    }
+    )
+
+}
+>>>>>>> upstream/master

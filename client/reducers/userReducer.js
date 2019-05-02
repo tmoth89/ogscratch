@@ -9,7 +9,7 @@ const initialState = {
   userCreated: false,
   artRecieved: false,
   art: [],
-  artList: []
+
 };
 
 const userReducer = (state = initialState, action) => {
@@ -41,6 +41,8 @@ const userReducer = (state = initialState, action) => {
 
     case types.POST_USERNAME_AND_PASSWORD_SUCCESS:
       newVerified = true;
+      console.log("Action Payload");
+      console.log(action.payload);
       return {
         ...state,
         verified: newVerified,
@@ -76,6 +78,14 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+
+    case "CHECK_SESSION":
+      console.log(`Checking Session Result: ${action.payload}`);
+      newVerified = action.payload;
+      return {
+        ...state,
+        verified: newVerified
+      }
 
     case types.POST_GET_ART_SUCCESS:
       newArtRecieved = true;

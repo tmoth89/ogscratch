@@ -8,6 +8,6 @@ import Root from './Root';
 // require('./styles.css') - not using in
 
 render(
-    <Root />
-    ,document.getElementById('root')
+    <Root />,
+    document.getElementById('root')
 )
