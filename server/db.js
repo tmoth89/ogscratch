@@ -7,9 +7,13 @@ const client = new Client({
   password: DB_KEYS.PASSWORD, // need to hide the password
   port: '5432',
 })
-//terminal: psql -d srbxdloa -h isilo.db.elephantsql.com -U srbxdloa
+
+
+
+
 
 client.connect((err) => {
+  console.log(`Connecting to DB:`);
   if (err) {
     throw new Error(err);
   } else {
